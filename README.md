@@ -77,7 +77,7 @@ Pass any arguments intended for `fowl` directly to `fowlrot.sh`. The script will
 The script can be customized using these environment variables:
 
 - `FOWLROT_MODULO`: Time period in seconds (default: 60, minimum: 20). Lowering it makes the code change more often, but if the two sides take too long to launch, they might miss the synchronization window.
-- `FOWLROT_SECRET`: Required secret string for code generation.
+- `FOWLROT_SECRET`: Required secret string for code generation. You can generate a strong secret using a command like `openssl rand -hex 64`.
 - `FOWLROT_BIN`: Command to run `fowl` (default: `"uvx --quiet fowl@latest"` if `uvx` is installed, otherwise `"fowl"`).
 - `FOWLROT_HRS_BIN`: Command to run `HumanReadableSeed` (default: `"uvx --quiet HumanReadableSeed@latest"` if `uvx` is installed, otherwise `"HumanReadableSeed"`).
 
