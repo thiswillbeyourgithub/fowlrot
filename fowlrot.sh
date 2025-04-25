@@ -35,6 +35,34 @@ Environment variables:
   FOWLROT_BIN           Command to run fowl (default: uvx --quiet fowl@latest or fowl if uvx not found)
   FOWLROT_HRS_BIN       Command to run HumanReadableSeed (default: uvx --quiet HumanReadableSeed@latest or HumanReadableSeed if uvx not found)
 EOF
+
+    # Attempt to display the original fowl help
+    echo
+    echo "----------------------------------------"
+    echo "Original 'fowl --help' output:"
+    echo "----------------------------------------"
+    
+    # Split FOWLROT_BIN into command and arguments array
+    local -a FOWL_CMD_PARTS
+    FOWL_CMD_PARTS=(${(z)FOWLROT_BIN}) # zsh specific word splitting
+
+    # Execute fowl --help and capture output/error
+    local fowl_help_output
+    local fowl_help_exit_code
+    
+    # Capture stdout and stderr together, check exit code
+    fowl_help_output=$( "${FOWL_CMD_PARTS[@]}" --help 2>&1 )
+    fowl_help_exit_code=$?
+
+    if [[ $fowl_help_exit_code -eq 0 ]]; then
+        echo "$fowl_help_output"
+    else
+        echo "Error: Could not retrieve help from '${FOWL_CMD_PARTS[@]} --help'." >&2
+        echo "Exit code: $fowl_help_exit_code" >&2
+        # Optionally print the captured output even on error
+        # echo "Output/Error:" >&2
+        # echo "$fowl_help_output" >&2
+    fi
 }
 
 # Check if uvx is installed
