@@ -27,7 +27,7 @@ Examples:
   fowlrot --allow-connect 7657
 
   # Client side: Connect to the server
-  fowlrot --connect 7657
+  fowlrot --local 7657
 
 Environment variables:
   FOWLROT_MODULO        Time rotation interval in seconds (min: 20, default: 60)
